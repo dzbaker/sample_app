@@ -113,7 +113,6 @@ void SAMPLE_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
             }
             break;
 
-        /* default case already found during FC vs length test */
         default:
             CFE_EVS_SendEvent(SAMPLE_APP_CC_ERR_EID,
                               CFE_EVS_EventType_ERROR,
