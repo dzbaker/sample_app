@@ -51,8 +51,8 @@ CFE_Status_t SAMPLE_APP_SendHkCmd(const SAMPLE_APP_SendHkCmd_t *Msg)
     /*
     ** Get command execution counters...
     */
-    SAMPLE_APP_Data.HkTlm.Payload.CommandErrorCounter = SAMPLE_APP_Data.ErrCounter;
-    SAMPLE_APP_Data.HkTlm.Payload.CommandCounter      = SAMPLE_APP_Data.CmdCounter;
+    SAMPLE_APP_Data.HkTlm.Payload.CommandErrorCounter = SAMPLE_APP_Data.CommandErrorCounter;
+    SAMPLE_APP_Data.HkTlm.Payload.CommandCounter      = SAMPLE_APP_Data.CommandCounter;
 
     /*
     ** Send housekeeping telemetry packet...
@@ -78,7 +78,7 @@ CFE_Status_t SAMPLE_APP_SendHkCmd(const SAMPLE_APP_SendHkCmd_t *Msg)
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 CFE_Status_t SAMPLE_APP_NoopCmd(const SAMPLE_APP_NoopCmd_t *Msg)
 {
-    SAMPLE_APP_Data.CmdCounter++;
+    SAMPLE_APP_Data.CommandCounter++;
 
     CFE_EVS_SendEvent(SAMPLE_APP_NOOP_INF_EID,
                       CFE_EVS_EventType_INFORMATION,
@@ -97,8 +97,8 @@ CFE_Status_t SAMPLE_APP_NoopCmd(const SAMPLE_APP_NoopCmd_t *Msg)
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
 CFE_Status_t SAMPLE_APP_ResetCountersCmd(const SAMPLE_APP_ResetCountersCmd_t *Msg)
 {
-    SAMPLE_APP_Data.CmdCounter = 0;
-    SAMPLE_APP_Data.ErrCounter = 0;
+    SAMPLE_APP_Data.CommandCounter      = 0;
+    SAMPLE_APP_Data.CommandErrorCounter = 0;
 
     CFE_EVS_SendEvent(SAMPLE_APP_RESET_INF_EID, CFE_EVS_EventType_INFORMATION, "SAMPLE: RESET command");
 
@@ -119,7 +119,7 @@ CFE_Status_t SAMPLE_APP_ProcessCmd(const SAMPLE_APP_ProcessCmd_t *Msg)
     const char                *TableName = "SAMPLE_APP.ExampleTable";
 
     /* Sample Use of Example Table */
-    SAMPLE_APP_Data.CmdCounter++;
+    SAMPLE_APP_Data.CommandCounter++;
     Status = CFE_TBL_GetAddress(&TblAddr, SAMPLE_APP_Data.TblHandles[0]);
     if (Status < CFE_SUCCESS)
     {
@@ -154,7 +154,7 @@ CFE_Status_t SAMPLE_APP_ProcessCmd(const SAMPLE_APP_ProcessCmd_t *Msg)
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 CFE_Status_t SAMPLE_APP_DisplayParamCmd(const SAMPLE_APP_DisplayParamCmd_t *Msg)
 {
-    SAMPLE_APP_Data.CmdCounter++;
+    SAMPLE_APP_Data.CommandCounter++;
     CFE_EVS_SendEvent(SAMPLE_APP_VALUE_INF_EID,
                       CFE_EVS_EventType_INFORMATION,
                       "SAMPLE_APP: ValU32=%lu, ValI16=%d, ValStr=%s",

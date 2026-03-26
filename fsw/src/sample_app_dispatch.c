@@ -63,7 +63,7 @@ bool SAMPLE_APP_VerifyCmdLength(const CFE_MSG_Message_t *MsgPtr, size_t Expected
 
         result = false;
 
-        SAMPLE_APP_Data.ErrCounter++;
+        SAMPLE_APP_Data.CommandErrorCounter++;
     }
 
     return result;
