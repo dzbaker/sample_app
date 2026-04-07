@@ -50,8 +50,8 @@ typedef struct
     /*
     ** Command interface counters...
     */
-    uint8 CmdCounter;
-    uint8 ErrCounter;
+    uint8 CommandCounter;
+    uint8 CommandErrorCounter;
 
     /*
     ** Housekeeping telemetry packet...

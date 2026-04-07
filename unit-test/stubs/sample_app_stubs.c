@@ -46,6 +46,5 @@ CFE_Status_t SAMPLE_APP_Init(void)
  */
 void SAMPLE_APP_Main(void)
 {
-
     UT_GenStub_Execute(SAMPLE_APP_Main, Basic, NULL);
 }

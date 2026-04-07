@@ -47,12 +47,12 @@
 /*
  * An example hook function to check for a specific event.
  */
-static int32 UT_CheckEvent_Hook(void *UserObj, int32 StubRetcode, uint32 CallCount, const UT_StubContext_t *Context,
-                                va_list va)
+static int32
+UT_CheckEvent_Hook(void *UserObj, int32 StubRetcode, uint32 CallCount, const UT_StubContext_t *Context, va_list va)
 {
     UT_CheckEvent_t *State = UserObj;
     uint16           EventId;
-    const char *     Spec;
+    const char      *Spec;
 
     /*
      * The CFE_EVS_SendEvent stub passes the EventID as the
@@ -110,8 +110,10 @@ static int32 UT_CheckEvent_Hook(void *UserObj, int32 StubRetcode, uint32 CallCou
  * Helper function to set up for event checking
  * This attaches the hook function to CFE_EVS_SendEvent
  */
-void UT_CheckEvent_Setup_Impl(UT_CheckEvent_t *Evt, uint16 ExpectedEvent, const char *EventName,
-                              const char *ExpectedFormat)
+void UT_CheckEvent_Setup_Impl(UT_CheckEvent_t *Evt,
+                              uint16           ExpectedEvent,
+                              const char      *EventName,
+                              const char      *ExpectedFormat)
 {
     if (ExpectedFormat == NULL)
     {
