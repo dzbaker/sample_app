@@ -115,7 +115,8 @@ void Test_SAMPLE_APP_ProcessGroundCommand(void)
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_CMD_LEN_ERR_EID,
+    UT_CHECKEVENT_SETUP(&EventTest,
+                        SAMPLE_APP_CMD_LEN_ERR_EID,
                         "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u");
 
     /*
@@ -245,7 +246,8 @@ void Test_SAMPLE_APP_VerifyCmdLength(void)
      * test a match case
      */
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &size, sizeof(size), false);
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_CMD_LEN_ERR_EID,
+    UT_CHECKEVENT_SETUP(&EventTest,
+                        SAMPLE_APP_CMD_LEN_ERR_EID,
                         "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u");
 
     SAMPLE_APP_VerifyCmdLength(NULL, size);

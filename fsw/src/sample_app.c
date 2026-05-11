@@ -87,7 +87,8 @@ void SAMPLE_APP_Main(void)
         }
         else
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_PIPE_ERR_EID, CFE_EVS_EventType_ERROR,
+            CFE_EVS_SendEvent(SAMPLE_APP_PIPE_ERR_EID,
+                              CFE_EVS_EventType_ERROR,
                               "SAMPLE APP: SB Pipe Read Error, App Will Exit");
 
             SAMPLE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
@@ -130,18 +131,22 @@ CFE_Status_t SAMPLE_APP_Init(void)
         /*
          ** Initialize housekeeping packet (clear user data area).
          */
-        CFE_MSG_Init(CFE_MSG_PTR(SAMPLE_APP_Data.HkTlm.TelemetryHeader), CFE_SB_ValueToMsgId(SAMPLE_APP_HK_TLM_MID),
+        CFE_MSG_Init(CFE_MSG_PTR(SAMPLE_APP_Data.HkTlm.TelemetryHeader),
+                     CFE_SB_ValueToMsgId(SAMPLE_APP_HK_TLM_MID),
                      sizeof(SAMPLE_APP_Data.HkTlm));
 
         /*
          ** Create Software Bus message pipe.
          */
-        status = CFE_SB_CreatePipe(&SAMPLE_APP_Data.CommandPipe, SAMPLE_APP_PLATFORM_PIPE_DEPTH,
+        status = CFE_SB_CreatePipe(&SAMPLE_APP_Data.CommandPipe,
+                                   SAMPLE_APP_PLATFORM_PIPE_DEPTH,
                                    SAMPLE_APP_PLATFORM_PIPE_NAME);
         if (status != CFE_SUCCESS)
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_CR_PIPE_ERR_EID, CFE_EVS_EventType_ERROR,
-                              "Sample App: Error creating SB Command Pipe, RC = 0x%08lX", (unsigned long)status);
+            CFE_EVS_SendEvent(SAMPLE_APP_CR_PIPE_ERR_EID,
+                              CFE_EVS_EventType_ERROR,
+                              "Sample App: Error creating SB Command Pipe, RC = 0x%08lX",
+                              (unsigned long)status);
         }
     }
 
@@ -153,8 +158,10 @@ CFE_Status_t SAMPLE_APP_Init(void)
         status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId(SAMPLE_APP_SEND_HK_MID), SAMPLE_APP_Data.CommandPipe);
         if (status != CFE_SUCCESS)
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_SUB_HK_ERR_EID, CFE_EVS_EventType_ERROR,
-                              "Sample App: Error Subscribing to HK request, RC = 0x%08lX", (unsigned long)status);
+            CFE_EVS_SendEvent(SAMPLE_APP_SUB_HK_ERR_EID,
+                              CFE_EVS_EventType_ERROR,
+                              "Sample App: Error Subscribing to HK request, RC = 0x%08lX",
+                              (unsigned long)status);
         }
     }
 
@@ -166,8 +173,10 @@ CFE_Status_t SAMPLE_APP_Init(void)
         status = CFE_SB_Subscribe(CFE_SB_ValueToMsgId(SAMPLE_APP_CMD_MID), SAMPLE_APP_Data.CommandPipe);
         if (status != CFE_SUCCESS)
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_SUB_CMD_ERR_EID, CFE_EVS_EventType_ERROR,
-                              "Sample App: Error Subscribing to Commands, RC = 0x%08lX", (unsigned long)status);
+            CFE_EVS_SendEvent(SAMPLE_APP_SUB_CMD_ERR_EID,
+                              CFE_EVS_EventType_ERROR,
+                              "Sample App: Error Subscribing to Commands, RC = 0x%08lX",
+                              (unsigned long)status);
         }
     }
 
@@ -176,22 +185,33 @@ CFE_Status_t SAMPLE_APP_Init(void)
         /*
         ** Register Example Table(s)
         */
-        status = CFE_TBL_Register(&SAMPLE_APP_Data.TblHandles[0], "ExampleTable", sizeof(SAMPLE_APP_ExampleTable_t),
-                                  CFE_TBL_OPT_DEFAULT, SAMPLE_APP_TblValidationFunc);
+        status = CFE_TBL_Register(&SAMPLE_APP_Data.TblHandles[0],
+                                  "ExampleTable",
+                                  sizeof(SAMPLE_APP_ExampleTable_t),
+                                  CFE_TBL_OPT_DEFAULT,
+                                  SAMPLE_APP_TblValidationFunc);
         if (status != CFE_SUCCESS)
         {
-            CFE_EVS_SendEvent(SAMPLE_APP_TABLE_REG_ERR_EID, CFE_EVS_EventType_ERROR,
-                              "Sample App: Error Registering Example Table, RC = 0x%08lX", (unsigned long)status);
+            CFE_EVS_SendEvent(SAMPLE_APP_TABLE_REG_ERR_EID,
+                              CFE_EVS_EventType_ERROR,
+                              "Sample App: Error Registering Example Table, RC = 0x%08lX",
+                              (unsigned long)status);
         }
         else
         {
             status = CFE_TBL_Load(SAMPLE_APP_Data.TblHandles[0], CFE_TBL_SRC_FILE, SAMPLE_APP_PLATFORM_TABLE_FILE);
         }
 
-        CFE_Config_GetVersionString(VersionString, SAMPLE_APP_CFG_MAX_VERSION_STR_LEN, "Sample App", SAMPLE_APP_VERSION,
-                                    SAMPLE_APP_BUILD_CODENAME, SAMPLE_APP_LAST_OFFICIAL);
+        CFE_Config_GetVersionString(VersionString,
+                                    SAMPLE_APP_CFG_MAX_VERSION_STR_LEN,
+                                    "Sample App",
+                                    SAMPLE_APP_VERSION,
+                                    SAMPLE_APP_BUILD_CODENAME,
+                                    SAMPLE_APP_LAST_OFFICIAL);
 
-        CFE_EVS_SendEvent(SAMPLE_APP_INIT_INF_EID, CFE_EVS_EventType_INFORMATION, "Sample App Initialized.%s",
+        CFE_EVS_SendEvent(SAMPLE_APP_INIT_INF_EID,
+                          CFE_EVS_EventType_INFORMATION,
+                          "Sample App Initialized.%s",
                           VersionString);
     }
 

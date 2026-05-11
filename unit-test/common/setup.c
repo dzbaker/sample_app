@@ -52,4 +52,6 @@ void Sample_UT_Setup(void)
 /*
  * Teardown function after every test
  */
-void Sample_UT_TearDown(void) {}
+void Sample_UT_TearDown(void)
+{
+}
