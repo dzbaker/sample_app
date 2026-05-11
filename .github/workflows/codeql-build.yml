@@ -20,3 +20,4 @@ jobs:
       component-path: apps/sample_app
       prep: 'make prep; make -C build/tools/elf2cfetbl'
       make: 'make -C build/native/default_cpu1/apps/sample_app'
+      dependency: nasa/sample_lib
