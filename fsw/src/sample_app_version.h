@@ -30,7 +30,7 @@
 #define SAMPLE_APP_BUILD_NUMBER 0
 #define SAMPLE_APP_BUILD_BASELINE \
     "v7.0.0" /*!< Development Build: git tag that is the base for the current development */
-#define SAMPLE_APP_BUILD_DEV_CYCLE "v7.0.0" /**< @brief Development: Release name for current development cycle */
+#define SAMPLE_APP_BUILD_DEV_CYCLE "v7.0.1" /**< @brief Development: Release name for current development cycle */
 #define SAMPLE_APP_BUILD_CODENAME  "Draco"  /**< @brief: Development: Code name for the current build */
 
 /*
@@ -38,12 +38,12 @@
  */
 #define SAMPLE_APP_MAJOR_VERSION 7 /*!< @brief Major version number. */
 #define SAMPLE_APP_MINOR_VERSION 0 /*!< @brief Minor version number. */
-#define SAMPLE_APP_REVISION      0 /*!< @brief Revision version number. Value of 0 indicates a development version.*/
+#define SAMPLE_APP_REVISION      1 /*!< @brief Revision version number. Value of 0 indicates a development version.*/
 
 /**
  * @brief Last official release.
  */
-#define SAMPLE_APP_LAST_OFFICIAL "v7.0.0"
+#define SAMPLE_APP_LAST_OFFICIAL "v7.0.1"
 
 /*!
  * @brief Mission revision.
